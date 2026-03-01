@@ -83,9 +83,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 100;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 2rem;
     height: 60px;
     background: rgba(17, 17, 17, 0.55);
@@ -135,7 +133,7 @@ body {
     opacity: 1;
 }
 
-/* ── Footer ── */
+/* ==== Footer ==== */
 .footer {
     position: fixed;
     bottom: 0;
@@ -231,7 +229,7 @@ body {
     cursor: pointer;
 }
 
-/* ── Loop ── */
+/* ==== Loop ==== */
 .loop-wrapper {
     height: 100vh;
     overflow: hidden;
@@ -276,7 +274,7 @@ body {
     background: #f4a261;
 }
 
-/* ScrollSpy Dot-Navigation (optional, rechte Seite) */
+/* ScrollSpy Dot-Navigation */
 .dot-nav {
     position: fixed;
     right: 1.5rem;

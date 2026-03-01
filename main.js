@@ -15,7 +15,7 @@ const palettes = [
     ],
     [
         { bg: "#d4e09b", color: "#333" },
-        { bg: "#f6f4d2", color: "#333" },
+        { bg: "#f1eec1", color: "#2a4a34" },
         { bg: "#cbdfbd", color: "#333" },
         { bg: "#f19c79", color: "#fff" },
         { bg: "#a44a3f", color: "#fff" },
@@ -28,7 +28,7 @@ const spyNav = document.getElementById("spy-nav");
 const dotNav = document.getElementById("dot-nav");
 const navLinks = Array.from(spyNav.querySelectorAll("a"));
 
-// ── Duplikate automatisch erzeugen ──
+// ── Duplicates ──
 const originals = Array.from(track.children);
 originals.forEach(slide => {
     const clone = slide.cloneNode(true);
@@ -45,7 +45,7 @@ const WHEEL_COOLDOWN = 800;
 
 track.style.transform = `translateY(0px)`;
 
-// ── Dot-Navigation aufbauen ──
+// ── Dot-Navigation ──
 originals.forEach((_, i) => {
     const btn = document.createElement("button");
     btn.setAttribute("aria-label", `Slide ${i + 1}`);
@@ -55,7 +55,7 @@ originals.forEach((_, i) => {
 
 const dots = Array.from(dotNav.querySelectorAll("button"));
 
-// ── ScrollSpy updaten ──
+// ── Update ScrollSpy ──
 function updateSpy(index) {
     const realIndex = ((index % slideCount) + slideCount) % slideCount;
 
@@ -65,7 +65,7 @@ function updateSpy(index) {
 
 updateSpy(0);
 
-// ── Navbar-Klick → Slide anspringen ──
+// ── Navbar-Click → Slide Jump ──
 navLinks.forEach((a, i) => {
     a.addEventListener("click", (e) => {
         e.preventDefault();
@@ -89,11 +89,11 @@ window.addEventListener("wheel", (e) => {
     animateToIndex(currentIndex);
 }, { passive: false });
 
-// ── Zu bestimmter Slide springen ──
+// ── Jump to Slide ──
 function goToSlide(targetIndex) {
     if (isAnimating) return;
 
-    // kürzesten Weg finden (vorwärts oder rückwärts)
+    // Shortes Way to
     const diff = targetIndex - (((currentIndex % slideCount) + slideCount) % slideCount);
     if (diff === 0) return;
 
@@ -135,7 +135,21 @@ function animateToIndex(index) {
 function loopReset() {
     if (currentIndex >= slideCount) {
         currentIndex -= slideCount;
-        track.style.transform = `translateY(${-(currentIndex * slideHeight)}px)`;
+        loopCount++;
+
+        const palette = palettes[loopCount % palettes.length];
+        originals.forEach((slide, i) => {
+            track.children[i].style.background = palette[i].bg;
+            track.children[i].style.color = palette[i].color;
+            track.children[i + slideCount].style.background = palette[i].bg;
+            track.children[i + slideCount].style.color = palette[i].color;
+        });
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                track.style.transform = `translateY(${-(currentIndex * slideHeight)}px)`;
+            });
+        });
     }
     if (currentIndex < 0) {
         currentIndex += slideCount;
