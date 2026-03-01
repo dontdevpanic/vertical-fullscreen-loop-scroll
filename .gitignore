@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# macOS / Windows
+.DS_Store
+Thumbs.dbGitHub
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Optional
+NOUPLOAD/

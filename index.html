@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Endlos Vertical Loop</title>
+        <meta name="description" content="Endless Full Height Loop mit Section Scrolling">
+        <meta name="author" content="Bianca | DontDevPanic">
+        <link rel="icon" type="image/x-icon" href="loop-logo.svg">
+        <meta name="robots" content="index, follow">
+        <link rel="stylesheet" href="style.css">
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <header class="navbar space-between">
+            <span class="logo flex">
+                <img src="loop-logo.svg" alt="Loop Logo Icon">
+                <span class="logo-text">DevPanic<span class="opacity-muted">Zone</span></span>
+            </span>
+            <nav id="spy-nav" aria-label="Seitennavigation">
+                <ul role="list">
+                    <li><a href="#slide-1" data-slide="0">Slide 1</a></li>
+                    <li><a href="#slide-2" data-slide="1">Slide 2</a></li>
+                    <li><a href="#slide-3" data-slide="2">Slide 3</a></li>
+                    <li><a href="#slide-4" data-slide="3">Slide 4</a></li>
+                    <li><a href="#slide-5" data-slide="4">Slide 5</a></li>
+                </ul>
+                <button aria-label="Menü öffnen" onclick="openNav()" class="hamburger">☰</button>
+            </nav>
+        </header>
+        <!-- <header class="navbar">
+            <span class="logo">DevPanic<span style="opacity:.5">Zone</span></span>
+            <nav id="spy-nav">
+                <a href="#" data-slide="0">Start</a>
+                <a href="#" data-slide="1">Projekte</a>
+                <a href="#" data-slide="2">Skills</a>
+                <a href="#" data-slide="3">Über</a>
+                <a href="#" data-slide="4">Kontakt</a>
+            </nav>
+        </header> -->
+        <main>
+            <div class="loop-wrapper">
+                <div class="loop-track" id="track">
+                    <div class="loop-slide" data-index="0">Slide 1</div>
+                    <div class="loop-slide" data-index="1">Slide 2</div>
+                    <div class="loop-slide" data-index="2">Slide 3</div>
+                    <div class="loop-slide" data-index="3">Slide 4</div>
+                    <div class="loop-slide" data-index="4">Slide 5</div>
+                </div>
+            </div>
+
+            <!-- Dot-Navigation -->
+            <div class="dot-nav" id="dot-nav"></div>
+        </main>
+
+        <footer class="footer">
+            <nav class="flex flex-wrap gap-md">
+                <a href="https://github.com/dontdevpanic">Gitub Profile</a>
+                <a href="#">Gitub Repo</a>
+                <!-- <a href="#">© 2026 DevPanicZone</a> -->
+            </nav>
+        </footer>
+
+        <!-- Overlay außerhalb von main und loop-wrapper! -->
+        <div id="myNav" class="overlay">
+            <div class="overlay-content">
+                <button class="close-btn" onclick="closeNav()">✕</button>
+                <ul>
+                    <li><a href="#slide-1" data-slide="0">Slide 1</a></li>
+                    <li><a href="#slide-2" data-slide="1">Slide 2</a></li>
+                    <li><a href="#slide-3" data-slide="2">Slide 3</a></li>
+                    <li><a href="#slide-4" data-slide="3">Slide 4</a></li>
+                    <li><a href="#slide-5" data-slide="4">Slide 5</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+
+</html>
