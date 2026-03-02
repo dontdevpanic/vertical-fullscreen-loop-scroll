@@ -1,3 +1,5 @@
+// ==== Color Palettes ====
+
 const palettes = [
     [
         { bg: "#e76f51", color: "#fff" },
@@ -28,7 +30,7 @@ const spyNav = document.getElementById("spy-nav");
 const dotNav = document.getElementById("dot-nav");
 const navLinks = Array.from(spyNav.querySelectorAll("a"));
 
-// ── Duplicates ──
+// ==== Duplicates ====
 const originals = Array.from(track.children);
 originals.forEach(slide => {
     const clone = slide.cloneNode(true);
@@ -45,7 +47,7 @@ const WHEEL_COOLDOWN = 800;
 
 track.style.transform = `translateY(0px)`;
 
-// ── Dot-Navigation ──
+// ==== Dot-Navigation ====
 originals.forEach((_, i) => {
     const btn = document.createElement("button");
     btn.setAttribute("aria-label", `Slide ${i + 1}`);
@@ -55,7 +57,8 @@ originals.forEach((_, i) => {
 
 const dots = Array.from(dotNav.querySelectorAll("button"));
 
-// ── Update ScrollSpy ──
+
+// ==== Update ScrollSpy ====
 function updateSpy(index) {
     const realIndex = ((index % slideCount) + slideCount) % slideCount;
 
@@ -65,7 +68,8 @@ function updateSpy(index) {
 
 updateSpy(0);
 
-// ── Navbar-Click → Slide Jump ──
+
+// ==== Navbar-Click - Slide Jump ====
 navLinks.forEach((a, i) => {
     a.addEventListener("click", (e) => {
         e.preventDefault();
@@ -73,7 +77,8 @@ navLinks.forEach((a, i) => {
     });
 });
 
-// ── Wheel ──
+
+// ==== Wheel / Magic Mouse ====
 window.addEventListener("wheel", (e) => {
     e.preventDefault();
     const now = Date.now();
@@ -89,7 +94,8 @@ window.addEventListener("wheel", (e) => {
     animateToIndex(currentIndex);
 }, { passive: false });
 
-// ── Jump to Slide ──
+
+// ==== Jump to Slide ====
 function goToSlide(targetIndex) {
     if (isAnimating) return;
 
@@ -101,7 +107,8 @@ function goToSlide(targetIndex) {
     animateToIndex(currentIndex);
 }
 
-// ── Animation ──
+
+// ==== Animation ====
 function animateToIndex(index) {
     isAnimating = true;
     updateSpy(index);
@@ -168,7 +175,32 @@ function easeInOutCubic(t) {
         : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
-// Hamburger
+
+// ==== Touch ====
+let touchStartY = 0;
+
+window.addEventListener("touchstart", (e) => {
+    touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+window.addEventListener("touchend", (e) => {
+    const now = Date.now();
+    if (isAnimating || (now - lastWheelTime) < WHEEL_COOLDOWN) return;
+
+    const diff = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(diff) < 50) return; // zu kurze Wischgeste ignorieren
+
+    lastWheelTime = now;
+    if (diff > 0) {
+        currentIndex++;
+    } else {
+        currentIndex--;
+    }
+    animateToIndex(currentIndex);
+}, { passive: true });
+
+
+// ==== Hamburger ====
 function openNav() {
     document.getElementById("myNav").classList.add("is-open");
 }
