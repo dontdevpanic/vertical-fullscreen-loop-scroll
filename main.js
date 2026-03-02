@@ -43,7 +43,7 @@ const slideCount = originals.length;
 let currentIndex = 0;
 let isAnimating = false;
 let lastWheelTime = 0;
-const WHEEL_COOLDOWN = 800;
+const WHEEL_COOLDOWN = 600;
 
 track.style.transform = `translateY(0px)`;
 

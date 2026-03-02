@@ -231,7 +231,7 @@ body {
 
 /* ==== Loop ==== */
 .loop-wrapper {
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     position: relative;
 }
@@ -243,7 +243,7 @@ body {
 }
 
 .loop-slide {
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
