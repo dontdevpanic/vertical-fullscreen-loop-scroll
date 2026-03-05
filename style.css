@@ -47,6 +47,10 @@ body {
     align-items: center;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
 .text-center {
     text-align: center;
 }
@@ -83,7 +87,6 @@ body {
     left: 0;
     width: 100%;
     z-index: 100;
-    align-items: center;
     padding: 0 2rem;
     height: 60px;
     background: rgba(17, 17, 17, 0.55);
@@ -104,8 +107,6 @@ body {
 
 .navbar ul {
     list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
     margin: 0;
     padding: 0;
 }
@@ -141,9 +142,8 @@ body {
     width: 100%;
     z-index: 100;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    /* gap: 2rem; */
+    /* align-items: center; */
+    /* justify-content: center; */
     height: 40px;
     background: rgba(17, 17, 17, 0.55);
     backdrop-filter: blur(12px);
@@ -182,12 +182,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 145, 0, 0.8);
+    font-weight: bold;
+    background: rgba(255, 145, 0, 0.95);
     z-index: 200;
     display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .overlay.is-open {
@@ -195,7 +193,7 @@ body {
 }
 
 .overlay-content ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
     text-align: center;
 }
@@ -205,7 +203,6 @@ body {
 }
 
 .overlay-content a {
-    font-family: var(--display-font);
     font-size: clamp(2rem, 10vw, 5rem);
     color: var(--light);
     text-decoration: none;
@@ -220,8 +217,8 @@ body {
 
 .close-btn {
     position: absolute;
-    top: .8rem;
-    right: 2rem;
+    top: .7rem;
+    right: 1.8rem;
     background: none;
     border: none;
     color: var(--light);
@@ -231,28 +228,25 @@ body {
 
 /* ==== Loop ==== */
 .loop-wrapper {
-    height: 100dvh;
+    /* Safari Fix */
+    height: calc(var(--vh, 1vh) * 100);
     overflow: hidden;
     position: relative;
 }
 
 .loop-track {
-    display: flex;
-    flex-direction: column;
     will-change: transform;
 }
 
 .loop-slide {
-    height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
+    /* Safari Fix */
+    height: calc(var(--vh, 1vh) * 100);
+    font-size: 4.5rem;
     font-weight: bold;
     flex-shrink: 0;
 }
 
-/* Slide-Farben über data-index */
+/* Slide-Colors via data-index for 1st scroll*/
 .loop-slide[data-index="0"] {
     background: #e76f51;
 }
@@ -272,6 +266,7 @@ body {
 
 .loop-slide[data-index="4"] {
     background: #f4a261;
+    color: #222;
 }
 
 /* ScrollSpy Dot-Navigation */
@@ -281,8 +276,6 @@ body {
     top: 50%;
     transform: translateY(-50%);
     z-index: 100;
-    display: flex;
-    flex-direction: column;
     gap: 0.6rem;
 }
 
@@ -304,8 +297,8 @@ body {
 
 @media screen and (max-width:576px) {
 
-    nav .icons,
-    nav a {
+    /* nav .icons, */
+    nav:not(.footer-nav) a {
         display: none;
     }
 
@@ -326,5 +319,19 @@ body {
 @media screen and (max-width: 480px) {
     .logo-text {
         display: none;
+    }
+}
+
+@media screen and (max-width: 375px) {
+
+    .loop-slide {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+    .loop-slide {
+        font-size: 2.5rem;
     }
 }

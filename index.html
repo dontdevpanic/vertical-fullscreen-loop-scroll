@@ -13,13 +13,13 @@
     </head>
 
     <body>
-        <header class="navbar flex space-between">
+        <header class="navbar flex space-between align-items-center">
             <span class="logo flex">
                 <img src="loop-logo.svg" alt="Loop Logo Icon">
                 <span class="logo-text">DevPanic<span class="opacity-muted">Zone</span></span>
             </span>
             <nav id="spy-nav" aria-label="Seitennavigation">
-                <ul role="list">
+                <ul class="flex flex-wrap" role="list">
                     <li><a href="#slide-1" data-slide="0">Slide 1</a></li>
                     <li><a href="#slide-2" data-slide="1">Slide 2</a></li>
                     <li><a href="#slide-3" data-slide="2">Slide 3</a></li>
@@ -32,21 +32,21 @@
 
         <main>
             <div class="loop-wrapper">
-                <div class="loop-track" id="track">
-                    <div class="loop-slide" data-index="0">Slide 1</div>
-                    <div class="loop-slide" data-index="1">Slide 2</div>
-                    <div class="loop-slide" data-index="2">Slide 3</div>
-                    <div class="loop-slide" data-index="3">Slide 4</div>
-                    <div class="loop-slide" data-index="4">Slide 5</div>
+                <div class="loop-track flex flex-col" id="track">
+                    <div class="loop-slide flex align-items-center justify-center" data-index="0">Slide 1</div>
+                    <div class="loop-slide flex align-items-center justify-center" data-index="1">Slide 2</div>
+                    <div class="loop-slide flex align-items-center justify-center" data-index="2">Slide 3</div>
+                    <div class="loop-slide flex align-items-center justify-center" data-index="3">Slide 4</div>
+                    <div class="loop-slide flex align-items-center justify-center" data-index="4">Slide 5</div>
                 </div>
             </div>
 
             <!-- Dot-Navigation -->
-            <div class="dot-nav" id="dot-nav"></div>
+            <div class="dot-nav flex flex-col" id="dot-nav"></div>
         </main>
 
-        <footer class="footer">
-            <nav class="flex flex-wrap gap-md">
+        <footer class="footer align-items-center justify-center">
+            <nav class="footer-nav flex flex-wrap gap-md">
                 <a href="https://github.com/dontdevpanic">Gitub Profile</a>
                 <a href="https://github.com/dontdevpanic/vertical-fullscreen-loop-scroll">Gitub Repo</a>
                 <!-- <a href="#">© 2026 DevPanicZone</a> -->
@@ -54,7 +54,7 @@
         </footer>
 
         <!-- Overlay -->
-        <div id="myNav" class="overlay">
+        <div id="myNav" class="overlay flex-col align-items-center justify-center">
             <div class="overlay-content">
                 <button class="close-btn" onclick="closeNav()">✕</button>
                 <ul>

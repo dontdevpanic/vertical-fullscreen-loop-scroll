@@ -1,3 +1,41 @@
+// ==== Hello ====
+
+console.log("%c👋 Hello!", "font-size: 0.8rem;font-family:monospace");
+
+console.log(`%c
+┓┏┏┓┳┓┏┳┓┳┏┓┏┓┓     
+┃┃┣ ┣┫ ┃ ┃┃ ┣┫┃     
+┗┛┗┛┛┗ ┻ ┻┗┛┛┗┗┛    
+┏┓┳┳┓ ┓ ┏┓┏┓┳┓┏┓┏┓┳┓
+┣ ┃┃┃ ┃ ┗┓┃ ┣┫┣ ┣ ┃┃
+┻ ┗┛┗┛┗┛┗┛┗┛┛┗┗┛┗┛┛┗
+┓ ┏┓┏┓┏┓            
+┃ ┃┃┃┃┃┃            
+┗┛┗┛┗┛┣┛            
+`,
+    "color:#e76f51;font-family:monospace"
+);
+console.log(`%c
+Vertical Fullscreen Loop Scroll
+Scroll down.
+Or up.
+It doesn't matter.
+github.com/dontdevpanic
+`,
+    "font-family:monospace"
+);
+// ==== Fix iOS Safari 100vh ====
+
+function setRealVH() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+setRealVH();
+window.addEventListener('resize', setRealVH);
+window.addEventListener('orientationchange', setRealVH);
+
+
 // ==== Color Palettes ====
 
 const palettes = [
@@ -22,6 +60,34 @@ const palettes = [
         { bg: "#f19c79", color: "#fff" },
         { bg: "#a44a3f", color: "#fff" },
     ],
+    [
+        { bg: "#0d0d0d", color: "#ff6b6b" },
+        { bg: "#1a1a2e", color: "#e94560" },
+        { bg: "#16213e", color: "#3a6ba8" },
+        { bg: "#e94560", color: "#fff" },
+        { bg: "#ff6b6b", color: "#0d0d0d" },
+    ],
+    [
+        { bg: "#ffcad4", color: "#333" },
+        { bg: "#f4acb7", color: "#333" },
+        { bg: "#9d8189", color: "#fff" },
+        { bg: "#d8e2dc", color: "#333" },
+        { bg: "#ffe5d9", color: "#333" },
+    ],
+    [
+        { bg: "#606c38", color: "#fff" },
+        { bg: "#283618", color: "#dda15e" },
+        { bg: "#fefae0", color: "#283618" },
+        { bg: "#dda15e", color: "#283618" },
+        { bg: "#bc6c25", color: "#fff" },
+    ],
+    [
+        { bg: "#03045e", color: "#90e0ef" },
+        { bg: "#0077b6", color: "#fff" },
+        { bg: "#00b4d8", color: "#03045e" },
+        { bg: "#90e0ef", color: "#03045e" },
+        { bg: "#caf0f8", color: "#0077b6" },
+    ],
 ];
 let loopCount = 0;
 
@@ -37,7 +103,8 @@ originals.forEach(slide => {
     track.appendChild(clone);
 });
 
-const slideHeight = window.innerHeight;
+let slideHeight = window.innerHeight;
+// const slideHeight = window.innerHeight;
 const slideCount = originals.length;
 
 let currentIndex = 0;
@@ -56,7 +123,6 @@ originals.forEach((_, i) => {
 });
 
 const dots = Array.from(dotNav.querySelectorAll("button"));
-
 
 // ==== Update ScrollSpy ====
 function updateSpy(index) {
@@ -175,6 +241,10 @@ function easeInOutCubic(t) {
         : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
+window.addEventListener("resize", () => {
+    slideHeight = window.innerHeight;
+    track.style.transform = `translateY(${-(currentIndex * slideHeight)}px)`;
+});
 
 // ==== Touch ====
 let touchStartY = 0;
